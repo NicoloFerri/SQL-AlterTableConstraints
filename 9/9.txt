@@ -1,0 +1,49 @@
+select M.NAME
+from meal m
+join ingredient i on M.ID = I.MEAL_ID
+where I.NAME = 'GARLIC';
+
+
+
+select COUNT(distinct M.NAME)
+from meal m
+join ingredient i on M.ID = I.MEAL_ID
+where I.VEGETARIAN = 1;
+
+
+
+select distinct M.NAME, I.VEGAN, I.GLUTEN_FREE
+from meal m
+inner JOIN ingredient i on M.ID = I.MEAL_ID
+where I.VEGAN is true and I.GLUTEN_FREE is true;
+
+
+
+select AVG(NUMBER_OF_INGREDIENT) as AVERAGE_NUMBER_OF_INGREDIENT_FOR_EACH_MEAL
+from (
+     select M.ID , COUNT() as NUMBER_OF_INGREDIENT
+     from meal m
+     join ingredient i ON M.ID = I.MEAL_ID
+     group by M.ID
+) as NUMBER_OF_INGREDIENT;
+
+
+
+select M.NAME
+from meal m
+join (
+     select meal_id, COUNT() as ingredientscount
+     from ingredient i
+     group by meal_id
+
+
+     ----------------
+     */ Inner joins */
+
+     SELECT *
+     FROM CUSTOMER
+     INNER JOIN ORDER ON CUSTOMER.CUSTOMER_ID = ORDER.CUSTOMER_ID;
+
+     SELECT *
+     FROM PRODUCT
+     INNER JOIN INVENTORY ON PRODUCT.PRODUCT_ID = INVENTORY.PRODUCT_ID;
