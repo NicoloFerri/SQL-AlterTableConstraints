@@ -1,0 +1,60 @@
+
+/*
+CREATE TABLE meals (
+    meal_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    price DECIMAL(10, 2),
+    calories INT
+);
+
+
+INSERT INTO meals (meal_id, name, price, calories)
+VALUES
+    (1, 'Spaghetti Carbonara', 12.99, 750),
+    (2, 'Grilled Chicken Salad', 16.50, 420),
+    (3, 'Margherita Pizza', 14.95, 950),
+    (4, 'Steak Frites', 22.75, 850),
+    (5, 'Sushi Platter', 28.99, 550),
+    (6, 'Veggie Burger', 10.99, 550);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    meal_id INT,
+    order_date DATETIME
+);
+
+INSERT INTO orders (order_id, meal_id, order_date)
+VALUES
+    (1, 2, '2023-09-03 12:30:00'),
+    (2, 4, '2023-09-03 13:45:00'),
+    (3, 1, '2023-09-03 14:15:00'),
+    (4, 3, '2023-09-03 15:30:00'),
+    (5, 2, '2023-09-03 16:00:00'),
+    (6, 5, '2023-09-03 17:30:00'),
+    (7, 4, '2023-09-03 17:45:00'),
+    (8, 6, '2023-09-03 18:30:00'),
+    (9, 3, '2023-09-03 19:15:00');
+
+*/
+
+
+select meal_id, count(*) AS num_orders
+from orders
+group by meal_id;
+
+SELECT SUM(price) AS total_revenue
+FROM meals
+WHERE price > 15;
+
+SELECT COUNT(*) AS num_meals
+FROM meals
+WHERE calories > 500;
+
+SELECT SUM(price) AS total_price
+FROM meals
+WHERE LOWER(name) LIKE '%s%';
+
+SELECT meal_id, COUNT(*) AS num_orders
+FROM orders
+WHERE order_date < '2023-09-03 18:00:00' 
+GROUP BY meal_id;
